@@ -31,7 +31,7 @@
 		"react/jsx-indent-props": [2, "tab"],
 		// suppress errors for missing 'import React' in files
 		"react/react-in-jsx-scope": "off",
-		"comma-dangle": ["error", "never"]
+		"comma-dangle": ["never", "always"]
 	},
 	"settings": {
 		"import/resolver": {
