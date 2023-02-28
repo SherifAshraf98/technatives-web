@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider } from 'react-router-dom';
+import { Loader } from './components/Loader';
 import { router } from './routes';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 	<React.StrictMode>
-		<RouterProvider router={router} />
+		<RouterProvider router={router} fallbackElement={<Loader />} />
 	</React.StrictMode>
 );

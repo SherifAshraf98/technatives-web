@@ -1,4 +1,5 @@
 import { createBrowserRouter, Navigate, RouteObject } from 'react-router-dom';
+import App from './App';
 import { AppError } from './error/AppError';
 import { ListImages } from './images/ListImages';
 import { UploadImage } from './images/UploadImage';
@@ -11,13 +12,19 @@ export enum AppRoutePath {
 const routes: RouteObject[] = [
 	{
 		path: AppRoutePath.Home,
-		element: <ListImages />,
-		errorElement: <AppError />,
-	},
-	{
-		path: AppRoutePath.Upload,
-		element: <UploadImage />,
-		errorElement: <AppError />,
+		element: <App />,
+		children: [
+			{
+				path: AppRoutePath.Home,
+				element: <ListImages />,
+				errorElement: <AppError />,
+			},
+			{
+				path: AppRoutePath.Upload,
+				element: <UploadImage />,
+				errorElement: <AppError />,
+			},
+		],
 	},
 	// wild card, if the user entered a url that does not exist, redirect to the home page
 	{

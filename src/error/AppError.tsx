@@ -7,8 +7,16 @@ export const AppError = () => {
 	console.error(error);
 
 	return (
-		<Box display="flex" flexDirection="column" justifyContent="center" textAlign="center">
-			<Typography variant="h1" gutterBottom>
+		<Box
+			display="flex"
+			flexDirection="column"
+			justifyContent="center"
+			alignItems="center"
+			textAlign="center"
+			width="100%"
+			height="100vh"
+		>
+			<Typography variant="h2" gutterBottom>
 				Oops!
 			</Typography>
 			<Typography>Sorry, an unexpected error has occurred.</Typography>
