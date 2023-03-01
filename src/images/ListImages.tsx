@@ -10,7 +10,7 @@ export const ListImages = () => {
 	if (!posts) return <Loader />;
 
 	return (
-		<Box display="flex" flexDirection="column" alignItems="center" rowGap={2} p={2}>
+		<Box display="flex" flexDirection="column" alignItems="center" rowGap={2} py={2} px={1}>
 			{data}
 		</Box>
 	);

@@ -1,10 +1,13 @@
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Button, Typography, useMediaQuery } from '@mui/material';
 import { useRouteError } from 'react-router-dom';
 import { AppRoutePath } from '../routes';
+import { theme } from '../theme/mui';
+import { screenHeight } from '../utils/consts';
 
 export const AppError = () => {
 	const error = useRouteError();
 	console.error(error);
+	const mobile = useMediaQuery(() => theme.breakpoints.down('sm'));
 
 	return (
 		<Box
@@ -14,7 +17,7 @@ export const AppError = () => {
 			alignItems="center"
 			textAlign="center"
 			width="100%"
-			height="100vh"
+			height={screenHeight(mobile)}
 		>
 			<Typography variant="h2" gutterBottom>
 				Oops!

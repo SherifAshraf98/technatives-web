@@ -1,11 +1,15 @@
-import { Box, CircularProgress } from '@mui/material';
+import { Box, CircularProgress, useMediaQuery } from '@mui/material';
+import { theme } from '../theme/mui';
+import { screenHeight } from '../utils/consts';
 
 export const Loader = () => {
+	const mobile = useMediaQuery(() => theme.breakpoints.down('sm'));
+
 	return (
 		<Box
 			display="flex"
 			width="100%"
-			height="100vh"
+			height={screenHeight(mobile)}
 			flexDirection="column"
 			justifyContent="center"
 			alignItems="center"

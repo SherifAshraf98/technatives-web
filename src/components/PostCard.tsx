@@ -1,7 +1,7 @@
 import { Avatar, Card, CardContent, CardHeader, CardMedia, Typography } from '@mui/material';
 import { red } from '@mui/material/colors';
 
-interface postCardProps {
+interface PostCardProps {
 	post: {
 		id: string;
 		post: string;
@@ -10,7 +10,7 @@ interface postCardProps {
 	};
 }
 
-export const PostCard = ({ post: { id, post, imageUrl, createdAt } }: postCardProps) => {
+export const PostCard = ({ post: { post, imageUrl, createdAt } }: PostCardProps) => {
 	return (
 		<Card sx={{ maxWidth: 600 }}>
 			<CardHeader
