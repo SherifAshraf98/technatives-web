@@ -9,8 +9,7 @@ export const ListImages = () => {
 	const mobile = useMediaQuery(() => theme.breakpoints.down('sm'));
 
 	const { data, isLoading } = useGetImages({
-		// page: 1,
-		// pageSize: 1,
+		pageSize: 10,
 	});
 	if (isLoading) return <Loader />;
 	if (!data?.data) return <Typography variant="h5">No images added, please add some.</Typography>;
