@@ -71,7 +71,7 @@ export const UploadImage = () => {
 						helperText={formik.touched.caption && formik.errors.caption}
 					/>
 					<Box display={'flex'} rowGap={2} flexDirection="column" my={2}>
-						<Button variant="contained" component="label">
+						<Button disabled={isLoading} variant="contained" component="label">
 							{formik.values.image ? 'Choose another image' : 'Upload image'}
 							<input
 								hidden
