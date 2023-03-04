@@ -2,7 +2,7 @@ export const posts = [
 	{
 		id: '01GTA636WVMWJBYJYRPN094SV9',
 		post: 'Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.\n\nCras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.\n\nProin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.',
-		imageUrl: 'http://dummyimage.com/153x100.png/5fa2dd/ffffff',
+		imageUrl: 'https://technatives.s3.amazonaws.com/Screen%20Shot%202023-02-27%20at%202.41.28%20PM.png',
 		createdAt: '9/21/2022',
 	},
 	{
@@ -14,7 +14,7 @@ export const posts = [
 	{
 		id: '01GTA636WZCTC1BWRBT6DG8KVN',
 		post: 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.\n\nEtiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.\n\nPraesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.',
-		imageUrl: 'http://dummyimage.com/240x100.png/dddddd/000000',
+		imageUrl: 'https://technatives.s3.amazonaws.com/Screen%20Shot%202023-02-27%20at%202.41.28%20PM.png',
 		createdAt: '4/5/2022',
 	},
 	{

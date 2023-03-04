@@ -1,33 +1,49 @@
 import DeleteIcon from '@mui/icons-material/Delete';
+import { LoadingButton } from '@mui/lab';
 import { Button, IconButton, TextField, Typography, useMediaQuery } from '@mui/material';
 import { Box } from '@mui/system';
 import { useFormik } from 'formik';
+import { useSnackbar } from 'notistack';
 import * as Yup from 'yup';
+import { useUploadImage } from '../api/upload-image';
 import { theme } from '../theme/mui';
 import { screenHeight } from '../utils/consts';
 
 interface FormInitialValues {
-	post: string;
+	caption: string;
 	image: any;
 }
 
 export const UploadImage = () => {
+	// mutations
+	const { mutateAsync: addImage, isLoading } = useUploadImage();
+	const { enqueueSnackbar } = useSnackbar();
+
+	// form validation schema
 	const validationSchema = Yup.object().shape({
-		post: Yup.string().trim().required('Post description is required!'),
+		caption: Yup.string().trim().required('Caption is required!'),
 		image: Yup.mixed().required('Image is required, please select one!'),
 	});
 
 	const initialValues: FormInitialValues = {
-		post: '',
+		caption: '',
 		image: '',
 	};
 
 	const formik = useFormik({
 		initialValues,
 		validationSchema,
-		onSubmit: (values) => {
+		onSubmit: (values, { resetForm }) => {
 			console.log('file: UploadImage.tsx:30 ~ UploadImage ~ values:', values);
-			alert(JSON.stringify(values, null, 2));
+			const formData = new FormData();
+			formData.append('file', values.image);
+			formData.append('caption', values.caption);
+			addImage(formData as any)
+				.then(() => {
+					enqueueSnackbar('Image saved successfully', { autoHideDuration: 2000, variant: 'success' });
+					resetForm();
+				})
+				.catch(() => enqueueSnackbar('Error in saving post!', { autoHideDuration: 2000, variant: 'error' }));
 		},
 	});
 
@@ -46,21 +62,16 @@ export const UploadImage = () => {
 				<form onSubmit={formik.handleSubmit}>
 					<TextField
 						fullWidth
-						name="post"
-						id="post"
-						label="Enter post"
-						value={formik.values.post}
+						name="caption"
+						id="caption"
+						label="Enter caption"
+						value={formik.values.caption}
 						onChange={formik.handleChange}
-						error={formik.touched.post && Boolean(formik.errors.post)}
-						helperText={formik.touched.post && formik.errors.post}
+						error={formik.touched.caption && Boolean(formik.errors.caption)}
+						helperText={formik.touched.caption && formik.errors.caption}
 					/>
 					<Box display={'flex'} rowGap={2} flexDirection="column" my={2}>
-						<Button
-							variant="contained"
-							component="label"
-							// error={formik.touched.image && Boolean(formik.errors.image)}
-							// helperText={formik.touched.image && formik.errors.image}
-						>
+						<Button variant="contained" component="label">
 							{formik.values.image ? 'Choose another image' : 'Upload image'}
 							<input
 								hidden
@@ -72,6 +83,11 @@ export const UploadImage = () => {
 								value={''}
 							/>
 						</Button>
+						{formik.touched.image && Boolean(formik.errors.image) && (
+							<Typography sx={{ ml: 2, mt: -1 }} fontSize={'12px'} color={'#d32f2f'}>
+								{formik.touched.image && formik.errors.image?.toString()}
+							</Typography>
+						)}
 						{formik.values.image && (
 							<Box display={'flex'} justifyContent="space-around" columnGap={2} flexWrap="wrap">
 								<Box display={'flex'} flexDirection="column">
@@ -92,9 +108,9 @@ export const UploadImage = () => {
 						)}
 					</Box>
 					<Box>
-						<Button type="submit" variant="contained" fullWidth>
+						<LoadingButton loading={isLoading} type="submit" variant="contained" fullWidth>
 							Submit
-						</Button>
+						</LoadingButton>
 					</Box>
 				</form>
 			</Box>

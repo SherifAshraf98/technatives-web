@@ -1,12 +1,9 @@
 import { Box, Button, Typography, useMediaQuery } from '@mui/material';
-import { useRouteError } from 'react-router-dom';
 import { AppRoutePath } from '../routes';
 import { theme } from '../theme/mui';
 import { screenHeight } from '../utils/consts';
 
 export const AppError = () => {
-	const error = useRouteError();
-	console.error(error);
 	const mobile = useMediaQuery(() => theme.breakpoints.down('sm'));
 
 	return (
